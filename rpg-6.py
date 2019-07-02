@@ -1,5 +1,4 @@
-from character import Character
-from zombie import Zombie
+from character import *
 
 """
 In this simple RPG game, the hero fights the goblin. He has the options to:
@@ -9,24 +8,23 @@ In this simple RPG game, the hero fights the goblin. He has the options to:
 """
 
 def main():
-    hero1 = Character("Sean",10, 5)
-    goblin1 = Character("Gobbi",6,2) #un# so that you're able to fight something you can kill.
-    #goblin1 = Zombie() #imported from zombie #un# so that you're able to fight something you can kill
+    char1 = Character('Sean','hero',10, 5)
+    char2 = Character('Bob', 'jackie', 100, 1)
 
-    while goblin1.alive() and hero1.alive(): #using character code to attack.
-        hero1.print_status() #return from character.py
-        goblin1.print_status() #return from character.py
+    while char2.alive() and char1.alive(): #using character code to attack.
+        char1.print_status() #return from character.py
+        char2.print_status() #return from character.py
         print()
         print("What do you want to do?")
-        print("1. fight %s" % goblin1.name)
+        print("1. fight %s" % char2.name)
         print("2. do nothing")
         print("3. flee")
         print("> ",)
         user_input = input()
         if user_input == "1":
             # Hero attacks goblin
-            hero1.attack(goblin1) #from the character.py
-            if not goblin1.alive():
+            char1.attack(char2) #from the character.py
+            if not char2.alive():
                 print("The goblin is dead.")
         elif user_input == "2": #goblin still attacks
             pass
@@ -36,10 +34,10 @@ def main():
         else:
             print("Invalid input %r" % user_input)
 
-        if goblin1.alive(): #from character.py
+        if char2.alive(): #from character.py
             # Goblin attacks hero
-            goblin1.attack(hero1)
-            if not hero1.alive(): #if you pass too many times, goblin will kill hero
+            char2.attack(char1)
+            if not char1.alive(): #if you pass too many times, goblin will kill hero
                 print("You are dead.")
 
 main()
