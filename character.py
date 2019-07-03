@@ -14,8 +14,11 @@ class Character(): # character class that holds all the information for the actu
         self.job = job #job title
         self.health = health
         self.power = power
-        self.wealth = 0
+        self.wealth = 20
+        self.evasion = 0
+        self.armor = 0
         self.bounty = 1
+        self.inventory = []
 
         #job system and bounty part 6
         if self.job.lower() == 'hero':
@@ -74,6 +77,19 @@ class Character(): # character class that holds all the information for the actu
             if roll == 1: #crazy damage
                 hit = self.power*2 #doubles the damage or something crazy
                 print("%s, you're a wizard's wizard!" % self.name)
+        if self.evasion > 8:
+            new_roll = randint(1,2)
+            if new_roll ==1:
+                hit = 0
+        elif self.evasion > 4:
+            new_roll = randint(1,100)
+            if new_roll <= 15:
+                hit = 0
+        elif self.evasion > 2:
+            new_roll = randint(1, 10)
+            if new_roll == 1:
+                hit = 0
+            
         return hit
 
 
